@@ -4,6 +4,12 @@ const routes = {
     index: "/auth",
     signin: "/auth/signin",
     signup: "/auth/signup",
+    password:{
+      index: "/auth/resetPassword",
+      emailCode: "/auth/resetPassword/code_to_email",
+      codeVerification: "/auth/resetPassword/code_verification",
+      change: "/auth/resetpassword/changePassword" 
+    }
   },
   support: {
     index: "/support",
