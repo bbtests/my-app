@@ -32,7 +32,7 @@ export default function Home() {
         <h2 className="text-center">AMBASSADOR PACKAGES</h2>
         <p className="text-md-center col-md-9 col-lg-7">Our approach to teaching is unique and our teachers are extremely highly rated. We are affordable, simple, effective and very intensive </p>
         <div className="w-100">
-          <SwiperContainer/>
+          <SwiperContainer />
         </div>
       </section>
     </main>
