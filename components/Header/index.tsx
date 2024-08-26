@@ -5,24 +5,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
 import LogoComponent from "../LogoComponent";
-import { useModal } from "@/components/Modal";
+import { ModalActionTypes, useModal } from "@/components/Modal";
+
 
 
 const modalHeader = <>Language Academy</>;
 const modalContent = <>Welcome to Language Academy</>;
 
 export default function Header() {
-    const { handleShow, setModalContent, setModalHeader, setOnClose } = useModal();
+    const { dispatch } = useModal();
     const [open, setOpen] = useState(false);
     const toggle = () => {
         setOpen(!open);
     }
-    const handleClose = () => console.log("Closed");
+    const onClose = () => console.log("Modal closed!")
     const handleShowed = () => {
-        setModalContent(modalContent)
-        setModalHeader(modalHeader)
-        setOnClose(() => handleClose)
-        handleShow();
+        dispatch({ type: ModalActionTypes.SET_MODAL_HEADER, payload: modalHeader });
+        dispatch({ type: ModalActionTypes.SET_MODAL_CONTENT, payload: modalContent });
+        dispatch({ type: ModalActionTypes.SET_ON_CLOSE_CALLBACK, payload: onClose });
+        dispatch({ type: ModalActionTypes.SHOW_MODAL });
     }
     return <>
         <header className={`w-100 p-2vh p-7vw position-fixed`}>
