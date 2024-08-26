@@ -1,6 +1,6 @@
 'use client';
 import Modal from 'react-bootstrap/Modal';
-import { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react';
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react';
 
 interface ModalContextType {
     show: boolean;
@@ -34,3 +34,12 @@ const AppModal = ({ children }: { children: ReactNode }) => {
 }
 
 export default AppModal
+
+
+export const useModal = () => {
+    const context = useContext(ModalContext);
+    if (context === undefined) {
+        throw new Error('useModal must be used within a ModalProvider');
+    }
+    return context;
+}

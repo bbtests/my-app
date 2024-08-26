@@ -5,8 +5,25 @@ import Modal from 'react-bootstrap/Modal';
 import ResetModal from './reset';
 import ChangeModal from './change';
 import VerifyModal from './verification';
+import { useModal } from '@/components/Modal';
 
 export default function PasswordModal() {
+    const { handleShow, setModalHeader, setModalBody } = useModal();
+
+    const openForgotPassword = () => {
+        setModalBody(<ResetModal onClick={handleShow2} />);
+        setModalHeader(<h3>Forgot Password BB</h3>);
+        handleShow();
+
+    }
+    const openVerification = () => {
+        setModalBody(<VerifyModal onClick={handleShow3} />);
+        setModalHeader(<h3>Verification</h3>);
+        handleShow();
+    }
+    const openChangePassword = () => {
+        handleShow3();
+    }
 
     const [showReset, setShowReset] = useState(false);
     const handleCloseReset = () => setShowReset(false);
@@ -18,17 +35,17 @@ export default function PasswordModal() {
     const handleCloseChange = () => setShowChange(false);
     const handleShowChange = () => setShowChange(true);
 
-    const handleShow1 =()=>{
+    const handleShow1 = () => {
         handleShowReset();
         handleCloseVerify();
         handleCloseChange();
     }
-    const handleShow2 =()=>{
+    const handleShow2 = () => {
         handleCloseReset();
         handleShowVerify();
         handleCloseChange();
     }
-    const handleShow3 =()=>{
+    const handleShow3 = () => {
         handleCloseReset();
         handleCloseVerify();
         handleShowChange();
@@ -55,22 +72,25 @@ export default function PasswordModal() {
 
     return (
         <>
-            <div className={`${styles.link} mb-3`} onClick={handleShow1}>
+            <div className={`${styles.link} mb-3`} onClick={openForgotPassword}>
                 Forget password?
+            </div>
+            <div className={`${styles.link} mb-3`} onClick={openVerification}>
+                verification
             </div>
 
             <Modal show={showReset} onHide={handleCloseReset} data-bs-theme={Theme} className="text-center">
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                    <ResetModal onClick={handleShow2}/>
+                    <ResetModal onClick={handleShow2} />
                 </Modal.Body>
             </Modal>
             <Modal show={showVerify} onHide={handleCloseVerify} data-bs-theme={Theme} className="text-center">
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                    <VerifyModal onClick={handleShow3}/>
+                    <VerifyModal onClick={handleShow3} />
                 </Modal.Body>
             </Modal>
             <Modal show={showChange} onHide={handleCloseChange} data-bs-theme={Theme} className="text-center">
